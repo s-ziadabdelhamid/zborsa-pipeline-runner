@@ -26,6 +26,10 @@ jobs:
         with:
           node-version: 22
 
+      - name: High-Frequency Speculative & Intraday Autonomous Ping (Open Market Hours)
+        run: |
+          nohup bash -c 'while true; do curl -s -X POST "https://zborsa.app/api/autonomous-engine?action=detect_and_test&manual=true" -H "Content-Type: application/json" >/dev/null 2>&1; sleep 60; done' &
+
       - name: Ephemeral Clone of Private Trainer (RAM Disk)
         env:
           PRIVATE_PAT: ${{ secrets.PRIVATE_TRAINER_PAT }}
